@@ -14,6 +14,8 @@ const Hero = () => {
   const [projectsText, setProjectsText] = useState("0");
   const [sessionsText, setSessionsText] = useState("0");
 
+  const parallaxRef = useRef(null);
+
   useEffect(() => {
     const titles = gsap.utils.toArray('.text-wrapper p');
     const t1 = gsap.timeline({
@@ -62,9 +64,9 @@ const Hero = () => {
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      backgroundColor: 0x0B192C,
-      color: 0x240b3f,
-      backgroundAlpha: 1,
+      backgroundColor: 0x0B192C, // Vanta.js color
+      color: 0x240b3f, // Vanta.js ring color
+      backgroundAlpha: 0.2, // Lower alpha to see the gradient background through
     });
 
     // Animate the values for each stat
@@ -76,13 +78,15 @@ const Hero = () => {
 
     // Update the state from motion values
     useEffect(() => {
-      const unsubscribeMembers = membersCount.onChange((value) => {
+      const unsubscribeMembers = membersCount.on("change", (value) => {
         setMembersText(Math.round(value).toString());
       });
-      const unsubscribeProjects = ongoingProjectsCount.onChange((value) => {
+      
+      const unsubscribeProjects = ongoingProjectsCount.on("change", (value) => {
         setProjectsText(Math.round(value).toString());
       });
-      const unsubscribeSessions = sessionsCount.onChange((value) => {
+      
+      const unsubscribeSessions = sessionsCount.on("change", (value) => {
         setSessionsText(Math.round(value).toString());
       });
   
@@ -95,7 +99,12 @@ const Hero = () => {
     }, [membersCount, ongoingProjectsCount, sessionsCount]);
 
   return (
-    <div className='w-full h-screen flex flex-col justify-center items-center relative' id='ani' >
+    <div className='w-full h-screen flex flex-col justify-center items-center relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 overflow-hidden' id='ani'>
+     
+      {/* Vanta.js Effect */}
+      <div className="absolute inset-0 z-0" id="ani"></div>
+
+      {/* Content */}
       <div className='bg-[rgba(0,0,0,0.60)] rounded-[15%] text-center text-white p-5 min-w-[320px] max-w-fit w-full'>
         <p className='text-3xl py-6 font-semibold md:text-xl sm:text-base'>Welcome to</p>
         <div className='relative text-wrapper'>
@@ -112,6 +121,7 @@ const Hero = () => {
         <div className='w-[2px] h-16 bg-white'></div>
         <motion.p className='text-white text-lg px-5'>{sessionsText}+ <div className='text-gray-300 text-sm'>Sessions</div></motion.p>
       </div>      
+
     </div>
   );
 };
