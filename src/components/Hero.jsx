@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import SplitTextJS from 'split-text-js';
 import RINGS from 'vanta/src/vanta.rings';
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { ScrollParallax } from "react-just-parallax";
 
 const Hero = () => {
   const membersCount = useMotionValue(0);
@@ -106,20 +107,20 @@ const Hero = () => {
 
       {/* Content */}
       <div className='bg-[rgba(0,0,0,0.60)] rounded-[15%] text-center text-white p-5 min-w-[320px] max-w-fit w-full'>
-        <p className='text-3xl py-6 font-semibold md:text-xl sm:text-base'>Welcome to</p>
+        <p className='lg:text-3xl sm:text-3xl py-6 font-semibold'>Welcome to</p>
         <div className='relative text-wrapper'>
-          <p className='absolute w-full left-1/2 transform -translate-x-1/2 text-5xl font-semibold md:text-4xl sm:text-3xl xs:text-xl'>Robotics</p>
-          <p className='absolute w-full left-1/2 transform -translate-x-1/2 text-5xl top-1/3 font-semibold md:text-4xl sm:text-3xl xs:text-xl'>Electronics</p>
-          <p className='absolute w-full left-1/2 transform -translate-x-1/2 text-5xl top-2/3 font-semibold md:text-4xl sm:text-3xl xs:text-xl'>Robotronics</p>
+          <p className='absolute w-full left-1/2 transform -translate-x-1/2 lg:text-5xl font-semibold md:text-4xl sm:text-3xl'>Robotics</p>
+          <p className='absolute w-full left-1/2 transform -translate-x-1/2 lg:text-5xl top-1/3 font-semibold md:text-4xl sm:text-3xl'>Electronics</p>
+          <p className='absolute w-full left-1/2 transform -translate-x-1/2 lg:text-5xl top-2/3 font-semibold md:text-4xl sm:text-3xl'>Robotronics</p>
         </div>
-        <p className='text-3xl py-9 mb-2 mt-4 font-semibold md:text-2xl sm:text-xl xs:text-lg'>Club</p>
+        <p className='lg:text-3xl py-9 mb-2 mt-4 font-semibold md:text-2xl text-xl'>Club</p>
       </div>
-      <div className='flex items-center justify-center bg-opacity-30 p-5 mt-10 rounded-lg backdrop-blur-md relative'>
-        <motion.p className='text-white text-lg px-5'>{membersText}+ <div className='text-gray-300 text-sm'>Members</div></motion.p>
-        <div className='w-[2px] h-16 bg-white'></div>
-        <motion.p className='text-white text-lg px-5'>{projectsText}+ <div className='text-gray-300 text-sm'>Ongoing Projects</div></motion.p>
-        <div className='w-[2px] h-16 bg-white'></div>
-        <motion.p className='text-white text-lg px-5'>{sessionsText}+ <div className='text-gray-300 text-sm'>Sessions</div></motion.p>
+      <div className='flex items-center justify-center bg-opacity-30 p-5 lg:mt-10 mt-2 rounded-lg backdrop-blur-md relative md:flex-row flex-col'>
+        <motion.p className='text-white text-lg px-5 flex items-center flex-col'>{membersText}+ <div className='text-gray-300 text-lg'>Members</div></motion.p>
+        <div className='w-[2px] h-16 bg-white lg:rotate-180 rotate-90'></div>
+        <motion.p className='text-white text-lg px-5 flex items-center flex-col'>{projectsText}+ <div className='text-gray-300 text-lg'>Ongoing Projects</div></motion.p>
+        <div className='w-[2px] h-16 bg-white lg:rotate-180 rotate-90'></div>
+        <motion.p className='text-white text-lg px-5 flex items-center flex-col'>{sessionsText}+ <div className='text-gray-300 text-lg'>Sessions</div></motion.p>
       </div>      
 
     </div>
